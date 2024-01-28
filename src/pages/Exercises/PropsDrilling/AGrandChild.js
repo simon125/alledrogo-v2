@@ -1,11 +1,15 @@
 import React from "react";
 
-export const AGrandChild = () => {
+export const AGrandChild = ({ setState }) => {
   return (
     <article>
       <p>AGrandChild</p>
 
-      <button>+1</button>
+      <button
+        onClick={() => setState((prevCounterState) => prevCounterState + 1)}
+      >
+        +1
+      </button>
     </article>
   );
 };

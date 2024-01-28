@@ -21,10 +21,18 @@ export const Navigation = () => {
       >
         <h1 style={{ margin: 0, fontSize: 20 }}>Alledrogo</h1>
         <ul>
-          <li>Products</li>
-          <li>Cart</li>
-          <li>Orders</li>
-          <li>Exercises</li>
+          <li>
+            <Link to="/">Products</Link>
+          </li>
+          <li>
+            <Link to="/order-summary">Cart</Link>
+          </li>
+          <li>
+            <Link to="/orders">Orders</Link>
+          </li>
+          <li>
+            <Link to="/exercises">Exercises</Link>
+          </li>
           <li>
             <ShoppingCartQuickView />
           </li>

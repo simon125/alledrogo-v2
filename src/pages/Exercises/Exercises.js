@@ -5,7 +5,7 @@ import { PropsDrilling } from "./PropsDrilling/PropsDrilling";
 export const Exercises = () => {
   return (
     <>
-      <article>
+      {/* <article>
         <h2>Lecture & Exercises</h2>
         <ul>
           <li>Setup reduxa</li>
@@ -16,8 +16,10 @@ export const Exercises = () => {
       <article>
         <h2>Setup Reduxa</h2>
       </article>
+       */}
       <PropsDrilling />
       <Counter />
+      <button>-1</button>
     </>
   );
 };
