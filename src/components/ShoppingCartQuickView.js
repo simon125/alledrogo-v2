@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { ShoppingCartIcon } from "../assets";
+import { useDispatch, useSelector } from "react-redux";
+import { resetCart } from "../redux/ProductsSlice";
 
 export const ShoppingCartQuickView = () => {
   const [showQuickView, setShowQuickView] = useState(false);
+
+  const cart = useSelector((state) => state.products.cart);
+
+  const dispatch = useDispatch();
 
   return (
     <div style={{ position: "relative" }}>
@@ -49,34 +55,29 @@ export const ShoppingCartQuickView = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>iPhone</td>
-                <td>1</td>
-                <td>2000$</td>
-              </tr>
-              <tr>
-                <td>komputer</td>
-                <td>1</td>
-                <td>2000$</td>
-              </tr>
-              <tr>
-                <td>iPhone</td>
-                <td>1</td>
-                <td>2000$</td>
-              </tr>
-              <tr>
-                <td>komputer</td>
-                <td>1</td>
-                <td>2000$</td>
-              </tr>
+              {cart.map(({ title, price, amount, id }) => (
+                <tr key={id}>
+                  <td>{title}</td>
+                  <td>{amount}</td>
+                  <td>{price}$</td>
+                </tr>
+              ))}
               <tr>
                 <td></td>
                 <td>Total:</td>
-                <td>4000$</td>
+                <td>
+                  {cart.reduce((acc, el) => acc + el.price * el.amount, 0)}$
+                </td>
               </tr>
             </tbody>
           </table>
-          <button>Wyczyść koszyk</button>
+          <button
+            onClick={() => {
+              dispatch(resetCart());
+            }}
+          >
+            Wyczyść koszyk
+          </button>
         </article>
       )}
     </div>

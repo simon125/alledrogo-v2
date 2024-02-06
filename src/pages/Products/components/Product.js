@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Product.scss";
+import { addProductToCart } from "../../../redux/ProductsSlice";
+import { useDispatch } from "react-redux";
 
 export const Product = ({ product }) => {
-  const handleAddProductClick = () => {};
+  const [amount, setAmount] = useState("0");
+  const dispatch = useDispatch();
+
+  const handleAddProductClick = () => {
+    dispatch(addProductToCart({ ...product, amount }));
+    setAmount("0");
+  };
 
   return (
     <div className="product-container">
@@ -16,7 +24,13 @@ export const Product = ({ product }) => {
         <img className="thumbnail" src={product.thumbnail} alt="" />
       </div>
       <div className="footer">
-        <input type="number" name="" id="" />
+        <input
+          value={amount}
+          onChange={({ target }) => setAmount(target.value)}
+          type="number"
+          name=""
+          id=""
+        />
         <button onClick={handleAddProductClick}>Dodaj do koszyka</button>
       </div>
     </div>
